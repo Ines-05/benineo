@@ -1,0 +1,8 @@
+{
+  "name": "Béninéo - Le voyage au cœur de l'âme du monde",
+  "description": "Une plateforme immersive de tourisme béninois proposant des circuits authentiques, une conciergerie de luxe et des coffrets cadeaux exclusifs.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
