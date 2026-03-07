@@ -32,12 +32,12 @@ const BOXES = [
 const EbunboxView: React.FC = () => {
   return (
     <div className="pt-24 pb-24">
-      <section className="bg-amber-50 py-24 px-6 mb-20">
+      <section className="bg-brand-neutral/30 py-24 px-6 mb-20 rounded-[3rem] mx-6">
         <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
-          <Gift className="text-amber-600 mb-8" size={48} />
-          <h1 className="text-5xl md:text-7xl font-serif text-stone-900 mb-8 italic">Ebunbox</h1>
-          <p className="text-stone-600 text-lg max-w-2xl font-light italic leading-relaxed">
-            "Un cadeau, un voyage, une émotion". Offrez la magie du Bénin à vos proches à travers nos coffrets cadeaux d'exception.
+          <Gift className="text-accent mb-8" size={64} strokeWidth={1.5} />
+          <h1 className="text-6xl md:text-9xl font-montserrat font-bold text-brand-dark mb-8 tracking-tighter">Ebun<span className="text-accent italic">box</span></h1>
+          <p className="text-stone-600 text-xl max-w-2xl font-light italic leading-relaxed font-sans">
+            "Un cadeau, un voyage, une émotion". <br /> Offrez la magie du Bénin à vos proches à travers nos coffrets cadeaux d'exception.
           </p>
         </div>
       </section>
@@ -60,13 +60,13 @@ const EbunboxView: React.FC = () => {
                   </li>
                 ))}
               </ul>
-              <div className="pt-6 border-t border-stone-50 flex items-center justify-between">
-                <span className="text-amber-900 font-bold text-xl">{box.price}</span>
-                <button 
-                   onClick={() => window.location.href = `https://wa.me/2290169410332?text=Je souhaite offrir l'Ebunbox : ${box.title}`}
-                   className="bg-stone-900 text-white p-4 rounded-full hover:bg-amber-700 transition-colors"
+              <div className="pt-6 border-t border-brand-neutral flex items-center justify-between">
+                <span className="text-accent font-bold text-2xl">{box.price}</span>
+                <button
+                  onClick={() => window.location.href = `https://wa.me/2290169410332?text=Je souhaite offrir l'Ebunbox : ${box.title}`}
+                  className="bg-brand-dark text-white p-5 rounded-full hover:bg-accent transition-all shadow-lg hover:rotate-[-10deg]"
                 >
-                  <ArrowRight size={20} />
+                  <ArrowRight size={24} />
                 </button>
               </div>
             </div>

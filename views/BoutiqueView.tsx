@@ -32,11 +32,11 @@ const PRODUCTS = [
 const BoutiqueView: React.FC = () => {
   return (
     <div className="pt-24 pb-24">
-      <section className="py-20 px-6 bg-stone-50 mb-20">
+      <section className="py-24 px-6 mb-20">
         <div className="max-w-7xl mx-auto text-center">
-          <ShoppingBag className="mx-auto text-stone-300 mb-8" size={48} />
-          <h1 className="text-5xl md:text-7xl font-serif text-stone-900 mb-6 italic">Goodies & Souvenirs</h1>
-          <p className="text-stone-500 text-lg max-w-2xl mx-auto italic">
+          <ShoppingBag className="mx-auto text-brand-neutral mb-8" size={64} strokeWidth={1} />
+          <h1 className="text-6xl md:text-9xl font-montserrat font-bold text-brand-dark mb-6 tracking-tighter">Goodies <span className="text-accent">&</span> Souvenirs</h1>
+          <p className="text-stone-500 text-xl max-w-2xl mx-auto italic font-sans font-light">
             "Emportez un morceau de votre voyage sur le Bénin."
           </p>
         </div>
@@ -61,10 +61,10 @@ const BoutiqueView: React.FC = () => {
               <p className="text-stone-500 text-sm font-light italic leading-relaxed">{product.desc}</p>
               <div className="pt-4 flex items-center justify-between">
                 <div className="flex flex-col">
-                  <span className="text-amber-900 font-bold text-xl">{product.price}</span>
-                  <span className="text-xs text-stone-400">{product.eur} / {product.usd}</span>
+                  <span className="text-accent font-bold text-2xl tracking-tight">{product.price}</span>
+                  <span className="text-[10px] text-stone-400 font-medium uppercase tracking-widest">{product.eur} / {product.usd}</span>
                 </div>
-                <button className="text-stone-300 group-hover:text-amber-700 transition-colors">
+                <button className="text-brand-neutral group-hover:text-accent transition-all transform group-hover:translate-x-1">
                   <ArrowRight size={24} />
                 </button>
               </div>

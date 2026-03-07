@@ -64,15 +64,15 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
             initial={{ opacity: 0, letterSpacing: "0.2em" }}
             animate={{ opacity: 1, letterSpacing: "0.5em" }}
             transition={{ delay: 1, duration: 1 }}
-            className="text-amber-400 font-bold uppercase text-xs md:text-sm mb-6 block drop-shadow-md"
+            className="text-accent font-bold uppercase text-[10px] md:text-xs mb-8 block drop-shadow-md tracking-[0.5em]"
           >
             L'âme de l'Afrique
           </motion.span>
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.8 }}
-            className="text-6xl md:text-9xl font-serif text-white mb-8 leading-tight tracking-tight"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.7, duration: 1.2, ease: "easeOut" }}
+            className="text-7xl md:text-[10rem] font-montserrat font-bold text-white mb-10 leading-[0.85] tracking-tighter"
           >
             Béninéo
           </motion.h1>
@@ -80,9 +80,9 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9, duration: 0.8 }}
-            className="text-lg md:text-2xl text-stone-200 max-w-2xl mx-auto mb-12 font-light leading-relaxed"
+            className="text-lg md:text-2xl text-white/90 max-w-2xl mx-auto mb-16 font-light leading-relaxed font-sans"
           >
-            Voyage au cœur du vivant. Une expérience <span className="italic text-amber-200">simple & fluide</span>.
+            Le monde commence au Bénin. <br className="hidden md:block" /> Une expérience <span className="italic font-medium text-accent">unique & authentique</span>.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -90,8 +90,11 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
             transition={{ delay: 1.1, duration: 0.8 }}
             className="flex flex-col sm:flex-row gap-6 justify-center"
           >
-            <button onClick={() => onNavigate('circuits')} className="group relative px-8 py-4 bg-white text-stone-900 rounded-full font-bold uppercase tracking-widest text-xs overflow-hidden transition-all hover:bg-amber-400">
-              <span className="relative z-10">Découvrir</span>
+            <button
+              onClick={() => onNavigate('circuits')}
+              className="group relative px-12 py-5 bg-accent text-white rounded-full font-bold uppercase tracking-[0.2em] text-[10px] overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_10px_30px_rgba(242,145,0,0.3)]"
+            >
+              <span className="relative z-10">Découvrir l'aventure</span>
             </button>
           </motion.div>
         </div>
@@ -105,8 +108,8 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-amber-600 font-bold uppercase tracking-[0.3em] text-[10px] mb-4 block">Excellence & Confort</span>
-            <h2 className="text-4xl md:text-5xl font-serif text-stone-900 dark:text-stone-100 leading-tight">Services <span className="italic">Exclusifs</span></h2>
+            <span className="text-accent font-bold uppercase tracking-[0.3em] text-[10px] mb-4 block">Excellence & Confort</span>
+            <h2 className="text-4xl md:text-5xl font-montserrat font-bold text-brand-dark dark:text-white leading-tight">Services <span className="italic font-medium">Exclusifs</span></h2>
           </motion.div>
 
           <div className="flex gap-4">

@@ -123,9 +123,9 @@ const ConciergerieView: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-stone-900 to-transparent"></div>
         </div>
         <div className="max-w-7xl mx-auto relative z-10 text-center px-6">
-          <span className="text-amber-500 font-bold uppercase tracking-[0.4em] text-xs mb-6 block">Service d'élite</span>
-          <h1 className="text-5xl md:text-8xl font-serif mb-8 italic">La Clé de vos besoins</h1>
-          <p className="text-stone-300 text-lg max-w-2xl mx-auto font-light leading-relaxed">
+          <span className="text-accent font-bold uppercase tracking-[0.4em] text-xs mb-6 block">Service d'élite</span>
+          <h1 className="text-6xl md:text-9xl font-montserrat font-bold mb-8 italic tracking-tighter text-white">La Clé de vos besoins</h1>
+          <p className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed font-sans">
             Parce que votre temps est précieux et votre confort essentiel, notre conciergerie orchestre chaque détail de votre séjour au Bénin avec rigueur et élégance.
           </p>
         </div>
@@ -137,17 +137,17 @@ const ConciergerieView: React.FC = () => {
             <div key={i} className="group bg-white dark:bg-stone-900 border border-stone-100 dark:border-stone-800 rounded-3xl overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 pb-8">
               <div className="h-48 overflow-hidden relative">
                 <img src={service.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={service.title} />
-                <div className="absolute top-4 left-4 w-12 h-12 bg-white/90 dark:bg-stone-800/90 backdrop-blur rounded-xl flex items-center justify-center text-amber-700 dark:text-amber-500 shadow-lg">
+                <div className="absolute top-4 left-4 w-12 h-12 bg-white/90 dark:bg-stone-800/90 backdrop-blur rounded-xl flex items-center justify-center text-accent shadow-lg">
                   <service.icon size={24} />
                 </div>
               </div>
               <div className="p-8">
-                <h3 className="text-2xl font-serif text-stone-900 dark:text-white mb-4">{service.title}</h3>
+                <h3 className="text-2xl font-montserrat font-bold text-brand-dark dark:text-white mb-4">{service.title}</h3>
                 <p className="text-stone-500 dark:text-stone-400 leading-relaxed mb-8 text-sm">{service.desc}</p>
                 <div className="pt-6 border-t border-stone-100 dark:border-stone-800">
                   <button
                     onClick={() => window.location.href = `https://wa.me/2290169410332?text=Je souhaite commander le service conciergerie : ${service.title}`}
-                    className="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-amber-800 dark:text-amber-500 hover:text-stone-900 dark:hover:text-white transition-colors"
+                    className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-accent hover:text-brand-dark dark:hover:text-white transition-colors"
                   >
                     Commander <ArrowRight size={16} />
                   </button>
@@ -156,12 +156,12 @@ const ConciergerieView: React.FC = () => {
             </div>
           ))}
 
-          <div className="p-10 bg-amber-700 dark:bg-amber-900 rounded-3xl text-white flex flex-col justify-center items-center text-center">
-            <h3 className="text-3xl font-serif mb-6">Besoin d'un service sur mesure ?</h3>
-            <p className="text-amber-100 mb-10 font-light">Notre équipe est à votre disposition 24/7 pour satisfaire vos demandes les plus exclusives.</p>
+          <div className="p-10 bg-accent rounded-[32px] text-white flex flex-col justify-center items-center text-center shadow-xl">
+            <h3 className="text-3xl font-montserrat font-bold mb-6">Besoin d'un service sur mesure ?</h3>
+            <p className="text-white/90 mb-10 font-light font-sans">Notre équipe est à votre disposition 24/7 pour satisfaire vos demandes les plus exclusives.</p>
             <a
               href="https://wa.me/2290169410332"
-              className="bg-white text-amber-900 dark:bg-stone-900 dark:text-amber-500 px-10 py-4 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-stone-100 dark:hover:bg-black transition-all"
+              className="bg-brand-dark text-white px-10 py-4 rounded-full text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-all shadow-lg"
             >
               Nous Contacter
             </a>

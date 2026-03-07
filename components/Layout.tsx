@@ -72,26 +72,26 @@ const Layout: React.FC<LayoutProps> = ({ children, currentView, onNavigate }) =>
     <div className="relative min-h-screen flex flex-col cursor-none bg-stone-50 dark:bg-stone-950 transition-colors duration-500">
       {/* Custom Laser Cursor */}
       <motion.div
-        className="fixed top-0 left-0 w-3 h-3 bg-amber-500 rounded-full pointer-events-none z-[9999] shadow-[0_0_15px_rgba(245,158,11,0.6)] mix-blend-screen"
+        className="fixed top-0 left-0 w-3 h-3 bg-accent rounded-full pointer-events-none z-[9999] shadow-[0_0_15px_rgba(242,145,0,0.6)] mix-blend-screen"
         style={{ translateX: cursorX, translateY: cursorY }}
       />
 
       {/* Header */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isTransparent ? 'bg-transparent py-6' : 'bg-white/95 backdrop-blur-md shadow-md py-3'}`}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-          <button onClick={() => onNavigate('home')} className="flex items-center gap-3 group text-left">
-            <div className={`w-12 h-12 flex items-center justify-center transition-all`}>
+          <button onClick={() => onNavigate('home')} className="flex items-center gap-4 group text-left">
+            <div className="relative group-hover:scale-110 transition-transform duration-500 ease-out">
               <img
                 src="/images/logo.png"
                 alt="Béninéo Logo"
-                className="w-full h-full object-contain"
+                className="w-16 h-16 object-contain mix-blend-multiply dark:mix-blend-screen brightness-100 contrast-100"
               />
             </div>
-            <div>
-              <div className={`text-xl font-bold font-serif leading-none transition-colors duration-300 ${isTransparent ? 'text-white' : 'text-stone-900 dark:text-white'}`}>
+            <div className="flex flex-col">
+              <div className={`text-2xl font-bold font-montserrat tracking-tight leading-none transition-colors duration-300 ${isTransparent ? 'text-white' : 'text-brand-dark dark:text-white'}`}>
                 Béninéo
               </div>
-              <div className={`text-[8px] uppercase tracking-[0.2em] transition-colors duration-300 ${isTransparent ? 'text-amber-400' : 'text-amber-700 dark:text-amber-500'}`}>
+              <div className={`text-[9px] font-medium uppercase tracking-[0.25em] mt-1 transition-colors duration-300 ${isTransparent ? 'text-accent' : 'text-accent dark:text-accent'}`}>
                 Le monde commence au Bénin
               </div>
             </div>
@@ -171,17 +171,19 @@ const Layout: React.FC<LayoutProps> = ({ children, currentView, onNavigate }) =>
       <footer className="bg-stone-950 text-stone-300 py-20 px-6 border-t border-stone-800">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-16 h-16 flex items-center justify-center bg-white/5 rounded-full p-2">
+            <div className="flex items-center gap-5 mb-8 group">
+              <div className="relative overflow-hidden">
                 <img
                   src="/images/logo.png"
                   alt="Béninéo Logo"
-                  className="w-full h-full object-contain"
+                  className="w-24 h-24 object-contain brightness-110 filter invert dark:invert-0 mix-blend-screen opacity-90 group-hover:opacity-100 transition-all duration-700"
                 />
               </div>
-              <h2 className="text-4xl font-serif text-white">Béninéo</h2>
+              <div>
+                <h2 className="text-4xl font-montserrat font-bold text-white tracking-tight">Béninéo</h2>
+                <p className="text-accent text-[10px] uppercase tracking-[0.3em] mt-1">Le monde commence au Bénin</p>
+              </div>
             </div>
-            <p className="text-amber-600 text-[10px] uppercase tracking-[0.3em] mb-6">Le monde commence au Bénin</p>
             <p className="max-w-md text-stone-400 leading-relaxed mb-8 italic text-sm">
               "Plus qu'une agence, nous sommes des conteurs d'histoires, créateurs d'expériences et artisans du voyage sur mesure au berceau vivant de la culture Vodoun."
             </p>
