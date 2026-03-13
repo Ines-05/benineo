@@ -7,8 +7,9 @@ import CircuitsView from './views/CircuitsView';
 import ConciergerieView from './views/ConciergerieView';
 import EbunboxView from './views/EbunboxView';
 import BoutiqueView from './views/BoutiqueView';
+import FinanceView from './views/FinanceView';
 
-export type ViewType = 'home' | 'circuits' | 'conciergerie' | 'ebunbox' | 'boutique';
+export type ViewType = 'home' | 'circuits' | 'conciergerie' | 'ebunbox' | 'boutique' | 'finance';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<ViewType>('home');
@@ -25,11 +26,13 @@ const App: React.FC = () => {
       case 'circuits':
         return <CircuitsView />;
       case 'conciergerie':
-        return <ConciergerieView />;
+        return <ConciergerieView onNavigate={setCurrentView} />;
       case 'ebunbox':
         return <EbunboxView />;
       case 'boutique':
         return <BoutiqueView />;
+      case 'finance':
+        return <FinanceView />;
       default:
         return <HomeView onNavigate={setCurrentView} />;
     }

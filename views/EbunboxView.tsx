@@ -6,25 +6,25 @@ const BOXES = [
   {
     title: "Bien-être Royal",
     price: "50 000 FCFA",
-    image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/box_royal.png",
     details: ["Massage complet", "Gommage corporel", "Soins du visage", "Déjeuner Royal (Entrée/Plat/Dessert)"]
   },
   {
     title: "Réalité Virtuelle & Nautisme",
     price: "35 000 FCFA",
-    image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/box_nautisme.png",
     details: ["Jet ski (10 min)", "Hydrokèkè / Kayak", "Réalité virtuelle (1h)"]
   },
   {
     title: "Weekend Magique Solo",
     price: "166 000 FCFA",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/weekend_magique.png",
     details: ["1 Nuit à Casa del Papa", "Côté Lagune", "Petit déjeuner & Dîner", "Bain d'argile à Gogotinkpon"]
   },
   {
     title: "Vitesse & Immersion",
     price: "25 000 FCFA",
-    image: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=1964&auto=format&fit=crop",
+    image: "/images/vitesse_immersion.png",
     details: ["Karting (1 session)", "Réalité virtuelle (1h)"]
   }
 ];
@@ -46,17 +46,23 @@ const EbunboxView: React.FC = () => {
         {BOXES.map((box, i) => (
           <div key={i} className="group bg-white rounded-[40px] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700 flex flex-col md:flex-row border border-stone-50">
             <div className="md:w-1/2 overflow-hidden h-64 md:h-auto">
-              <img src={box.image} alt={box.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
+              <img
+                src={box.image.startsWith('http') ? `${box.image}&w=800` : box.image}
+                alt={box.title}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div className="md:w-1/2 p-10 flex flex-col">
               <div className="flex justify-between items-start mb-6">
-                <h3 className="text-2xl font-serif text-stone-900 leading-tight">{box.title}</h3>
-                <Star className="text-amber-400 shrink-0" size={20} />
+                <h3 className="text-2xl font-montserrat font-bold text-brand-dark leading-tight">{box.title}</h3>
+                <Star className="text-accent shrink-0" size={20} />
               </div>
               <ul className="space-y-3 mb-8 flex-1">
                 {box.details.map((d, index) => (
-                  <li key={index} className="text-stone-500 text-sm flex items-center gap-3 italic">
-                    <span className="w-1.5 h-1.5 bg-amber-300 rounded-full" /> {d}
+                  <li key={index} className="text-stone-500 text-sm flex items-center gap-3 italic font-sans font-light">
+                    <span className="w-1.5 h-1.5 bg-accent rounded-full" /> {d}
                   </li>
                 ))}
               </ul>

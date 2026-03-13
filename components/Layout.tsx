@@ -62,6 +62,7 @@ const Layout: React.FC<LayoutProps> = ({ children, currentView, onNavigate }) =>
     { name: 'Accueil', view: 'home' },
     { name: 'Nos Circuits', view: 'circuits' },
     { name: 'Conciergerie', view: 'conciergerie' },
+    { name: 'Finance', view: 'finance' },
     { name: 'Ebunbox', view: 'ebunbox' },
     { name: 'Goodies & Souvenirs', view: 'boutique' },
   ];
@@ -77,24 +78,16 @@ const Layout: React.FC<LayoutProps> = ({ children, currentView, onNavigate }) =>
       />
 
       {/* Header */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isTransparent ? 'bg-transparent py-6' : 'bg-white/95 backdrop-blur-md shadow-md py-3'}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isTransparent ? 'bg-transparent py-10' : 'bg-white/80 dark:bg-stone-950/80 backdrop-blur-lg py-7'}`}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-          <button onClick={() => onNavigate('home')} className="flex items-center gap-4 group text-left">
-            <div className="relative group-hover:scale-110 transition-transform duration-500 ease-out">
-              <img
-                src="/images/logo.png"
-                alt="Béninéo Logo"
-                className="w-16 h-16 object-contain mix-blend-multiply dark:mix-blend-screen brightness-100 contrast-100"
-              />
-            </div>
-            <div className="flex flex-col">
-              <div className={`text-2xl font-bold font-montserrat tracking-tight leading-none transition-colors duration-300 ${isTransparent ? 'text-white' : 'text-brand-dark dark:text-white'}`}>
-                Béninéo
-              </div>
-              <div className={`text-[9px] font-medium uppercase tracking-[0.25em] mt-1 transition-colors duration-300 ${isTransparent ? 'text-accent' : 'text-accent dark:text-accent'}`}>
-                Le monde commence au Bénin
-              </div>
-            </div>
+          <button onClick={() => onNavigate('home')} className="flex items-center group text-left relative">
+            <img
+              src="/images/LoDi-logo.png.svg"
+              alt="Béninéo Logo"
+              className={`absolute top-1/2 -translate-y-1/2 left-[-20px] md:left-[-30px] h-[180px] md:h-[260px] w-auto object-contain transition-transform duration-500 scale-125 group-hover:scale-[1.3] pointer-events-none`}
+            />
+            {/* Espace vide pour garder la place du logo sur la grille flex */}
+            <div className="w-[120px] md:w-[160px] h-[30px]"></div>
           </button>
 
           {/* Desktop Nav */}
@@ -122,7 +115,7 @@ const Layout: React.FC<LayoutProps> = ({ children, currentView, onNavigate }) =>
 
             <a
               href="https://wa.me/2290169410332"
-              className="bg-amber-700 text-white px-6 py-2.5 rounded-full text-[10px] font-bold hover:bg-amber-800 transition-colors tracking-widest"
+              className="bg-amber-700 text-white px-6 py-3 rounded-full text-xs font-bold hover:bg-amber-800 transition-colors tracking-widest"
             >
               RÉSERVER
             </a>
@@ -171,18 +164,12 @@ const Layout: React.FC<LayoutProps> = ({ children, currentView, onNavigate }) =>
       <footer className="bg-stone-950 text-stone-300 py-20 px-6 border-t border-stone-800">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-5 mb-8 group">
-              <div className="relative overflow-hidden">
-                <img
-                  src="/images/logo.png"
-                  alt="Béninéo Logo"
-                  className="w-24 h-24 object-contain brightness-110 filter invert dark:invert-0 mix-blend-screen opacity-90 group-hover:opacity-100 transition-all duration-700"
-                />
-              </div>
-              <div>
-                <h2 className="text-4xl font-montserrat font-bold text-white tracking-tight">Béninéo</h2>
-                <p className="text-accent text-[10px] uppercase tracking-[0.3em] mt-1">Le monde commence au Bénin</p>
-              </div>
+            <div className="flex items-center mb-2 group -ml-8">
+              <img
+                src="/images/LoDi-logo.png.svg"
+                alt="Béninéo Logo"
+                className="h-[250px] md:h-[350px] w-auto object-contain opacity-90 transition-all duration-700 scale-125 group-hover:scale-[1.3] group-hover:opacity-100"
+              />
             </div>
             <p className="max-w-md text-stone-400 leading-relaxed mb-8 italic text-sm">
               "Plus qu'une agence, nous sommes des conteurs d'histoires, créateurs d'expériences et artisans du voyage sur mesure au berceau vivant de la culture Vodoun."

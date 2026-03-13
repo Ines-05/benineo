@@ -5,9 +5,10 @@ import { ViewType } from '../App';
 import { CIRCUITS, CONCIERGERIE_SERVICES } from '../constants';
 
 const HERO_IMAGES = [
-  "/images/amazon.png",
-  "/images/arène.png",
-  "/images/ouidah.png"
+  "/images/hero_ouidah.jpg",
+  "/images/hero_stade.jpg",
+  "/images/hero_amazone.jpg",
+  "/images/hero_culture.png"
 ];
 
 interface HomeViewProps {
@@ -21,9 +22,48 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % HERO_IMAGES.length);
-    }, 5000);
+    }, 7000); // 7 seconds for cinematic feel
 
     return () => clearInterval(timer);
+  }, []);
+
+  const BUTTON_LABELS = [
+    { 
+      text: "Découvrir nos services", 
+      view: 'home',
+      subtext: "Le monde commence au Bénin.\nUne expérience unique & authentique."
+    },
+    { 
+      text: "Nos coffrets cadeaux", 
+      view: 'ebunbox',
+      subtext: "Offrez le meilleur du Bénin\navec nos Ebunbox exclusifs."
+    },
+    { 
+      text: "Notre conciergerie", 
+      view: 'conciergerie',
+      subtext: "L'excellence & le confort\npour un séjour inoubliable."
+    },
+    { 
+      text: "Goodies & Souvenirs", 
+      view: 'boutique',
+      subtext: "Gardez des souvenirs mémorables\nde votre voyage."
+    },
+    { 
+      text: "L'aventure Béninéo", 
+      view: 'circuits',
+      subtext: "Explorez des circuits uniques\nau cœur de l'âme béninoise."
+    }
+  ];
+
+  const [currentLabelIndex, setCurrentLabelIndex] = useState(0);
+
+  // Button Labels Cycle Effect
+  useEffect(() => {
+    const labelTimer = setInterval(() => {
+      setCurrentLabelIndex((prev) => (prev + 1) % BUTTON_LABELS.length);
+    }, 3000);
+
+    return () => clearInterval(labelTimer);
   }, []);
 
   // Split services for dual marquee
@@ -40,12 +80,17 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
             <motion.img
               key={currentImageIndex}
               src={HERO_IMAGES[currentImageIndex]}
-              initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 0.6, scale: 1 }}
+              initial={{ opacity: 0, scale: 1 }}
+              animate={{ opacity: 0.6, scale: 1.1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
-              className="absolute inset-0 w-full h-full object-cover object-[center_20%]"
+              transition={{ 
+                opacity: { duration: 2, ease: "easeInOut" },
+                scale: { duration: 9, ease: "linear" } 
+              }}
+              className="absolute inset-0 w-full h-full object-cover"
               alt="Paysage Bénin"
+              decoding="async"
+              fetchPriority={currentImageIndex === 0 ? "high" : "low"}
             />
           </AnimatePresence>
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60"></div>
@@ -76,14 +121,20 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
           >
             Béninéo
           </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.8 }}
-            className="text-lg md:text-2xl text-white/90 max-w-2xl mx-auto mb-16 font-light leading-relaxed font-sans"
-          >
-            Le monde commence au Bénin. <br className="hidden md:block" /> Une expérience <span className="italic font-medium text-accent">unique & authentique</span>.
-          </motion.p>
+          <div className="h-24 md:h-32 flex items-center justify-center">
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={currentLabelIndex}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.6 }}
+                className="text-lg md:text-2xl text-white/90 max-w-2xl mx-auto font-light leading-relaxed font-sans whitespace-pre-line"
+              >
+                {BUTTON_LABELS[currentLabelIndex].subtext}
+              </motion.p>
+            </AnimatePresence>
+          </div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -91,10 +142,21 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
             className="flex flex-col sm:flex-row gap-6 justify-center"
           >
             <button
-              onClick={() => onNavigate('circuits')}
-              className="group relative px-12 py-5 bg-accent text-white rounded-full font-bold uppercase tracking-[0.2em] text-[10px] overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_10px_30px_rgba(242,145,0,0.3)]"
+              onClick={() => onNavigate(BUTTON_LABELS[currentLabelIndex].view as ViewType)}
+              className="group relative px-12 py-5 bg-accent text-white rounded-full font-bold uppercase tracking-[0.2em] text-xs md:text-sm overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_10px_30px_rgba(242,145,0,0.3)] min-w-[320px]"
             >
-              <span className="relative z-10">Découvrir l'aventure</span>
+               <AnimatePresence mode="wait">
+                <motion.span
+                  key={currentLabelIndex}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5 }}
+                  className="relative z-10 block"
+                >
+                  {BUTTON_LABELS[currentLabelIndex].text}
+                </motion.span>
+              </AnimatePresence>
             </button>
           </motion.div>
         </div>
@@ -115,7 +177,7 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
           <div className="flex gap-4">
             <button
               onClick={() => onNavigate('conciergerie')}
-              className="hidden md:flex items-center gap-2 text-stone-900 dark:text-stone-100 font-bold uppercase tracking-widest text-[10px] border border-stone-900 dark:border-stone-100 px-6 py-3 rounded-full hover:bg-stone-900 dark:hover:bg-stone-100 hover:text-white dark:hover:text-stone-900 transition-all"
+              className="hidden md:flex items-center gap-2 text-stone-900 dark:text-stone-100 font-bold uppercase tracking-widest text-xs border border-stone-900 dark:border-stone-100 px-6 py-3 rounded-full hover:bg-stone-900 dark:hover:bg-stone-100 hover:text-white dark:hover:text-stone-900 transition-all"
             >
               Tout les services
             </button>
@@ -134,11 +196,13 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                 <div
                   key={`r1-${service.id}-${index}`}
                   className="min-w-[300px] md:min-w-[380px] h-[450px] group cursor-pointer relative rounded-[2rem] overflow-hidden transform hover:scale-[0.98] transition-all duration-500"
-                  onClick={() => onNavigate('conciergerie')}
+                  onClick={() => service.id === 'finance' ? onNavigate('finance') : onNavigate('conciergerie')}
                 >
                   <img
-                    src={service.image}
+                    src={service.image.startsWith('http') ? `${service.image}&w=600` : service.image}
                     alt={service.title}
+                    loading="lazy"
+                    decoding="async"
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
@@ -166,11 +230,13 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                 <div
                   key={`r2-${service.id}-${index}`}
                   className="min-w-[300px] md:min-w-[380px] h-[450px] group cursor-pointer relative rounded-[2rem] overflow-hidden transform hover:scale-[0.98] transition-all duration-500"
-                  onClick={() => onNavigate('conciergerie')}
+                  onClick={() => service.id === 'finance' ? onNavigate('finance') : onNavigate('conciergerie')}
                 >
                   <img
-                    src={service.image}
+                    src={service.image.startsWith('http') ? `${service.image}&w=600` : service.image}
                     alt={service.title}
+                    loading="lazy"
+                    decoding="async"
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
@@ -217,7 +283,13 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
             >
               <div className="bg-stone-100 dark:bg-stone-800 rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500">
                 <div className="relative h-[500px] overflow-hidden">
-                  <img src={circuit.image} alt={circuit.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
+                  <img
+                    src={circuit.image.startsWith('http') ? `${circuit.image}?auto=format&fit=crop&w=800&q=80` : circuit.image}
+                    alt={circuit.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                  />
                   <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/90 via-black/50 to-transparent translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                     <p className="text-amber-400 text-xs font-bold mb-3 uppercase tracking-widest">{circuit.duration}</p>
                     <h3 className="text-3xl font-serif text-white mb-2 leading-tight">{circuit.title}</h3>

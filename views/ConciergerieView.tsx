@@ -13,7 +13,7 @@ const SERVICES = [
     icon: ShieldCheck,
     title: "Assistance visa",
     desc: "Accompagnement simple et sécurisé pour vos démarches de visa.",
-    image: "https://images.unsplash.com/photo-1544078751-58fee2d8a03b?q=80&w=2070&auto=format&fit=crop"
+    image: "/images/assistance_visa.jpg"
   },
   {
     icon: MapPin,
@@ -42,6 +42,7 @@ const SERVICES = [
     image: "https://images.unsplash.com/photo-1534536281715-e28d76689b4d?q=80&w=2070&auto=format&fit=crop"
   },
   {
+    id: 'finance',
     icon: Coins,
     title: "Services financiers",
     desc: "Assistance pour le change, Mobile Money et retraits sécurisés.",
@@ -113,7 +114,13 @@ const SERVICES = [
   }
 ];
 
-const ConciergerieView: React.FC = () => {
+import { ViewType } from '../App';
+
+interface ConciergerieViewProps {
+  onNavigate?: (view: ViewType) => void;
+}
+
+const ConciergerieView: React.FC<ConciergerieViewProps> = ({ onNavigate }) => {
   return (
     <div className="pt-24 pb-24 dark:bg-stone-950 transition-colors duration-500">
       {/* Sub-hero */}
@@ -136,7 +143,13 @@ const ConciergerieView: React.FC = () => {
           {SERVICES.map((service, i) => (
             <div key={i} className="group bg-white dark:bg-stone-900 border border-stone-100 dark:border-stone-800 rounded-3xl overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 pb-8">
               <div className="h-48 overflow-hidden relative">
-                <img src={service.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={service.title} />
+                <img
+                  src={service.image.startsWith('http') ? `${service.image}&w=600` : service.image}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  alt={service.title}
+                  loading="lazy"
+                  decoding="async"
+                />
                 <div className="absolute top-4 left-4 w-12 h-12 bg-white/90 dark:bg-stone-800/90 backdrop-blur rounded-xl flex items-center justify-center text-accent shadow-lg">
                   <service.icon size={24} />
                 </div>
@@ -144,13 +157,21 @@ const ConciergerieView: React.FC = () => {
               <div className="p-8">
                 <h3 className="text-2xl font-montserrat font-bold text-brand-dark dark:text-white mb-4">{service.title}</h3>
                 <p className="text-stone-500 dark:text-stone-400 leading-relaxed mb-8 text-sm">{service.desc}</p>
-                <div className="pt-6 border-t border-stone-100 dark:border-stone-800">
+                <div className="pt-6 border-t border-stone-100 dark:border-stone-800 flex items-center justify-between">
                   <button
                     onClick={() => window.location.href = `https://wa.me/2290169410332?text=Je souhaite commander le service conciergerie : ${service.title}`}
                     className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-accent hover:text-brand-dark dark:hover:text-white transition-colors"
                   >
                     Commander <ArrowRight size={16} />
                   </button>
+                  {service.id === 'finance' && onNavigate && (
+                    <button
+                      onClick={() => onNavigate('finance')}
+                      className="text-[10px] font-bold uppercase tracking-widest text-stone-400 hover:text-accent transition-colors"
+                    >
+                      En savoir plus
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

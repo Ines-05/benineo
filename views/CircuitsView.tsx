@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Clock, Users, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 const CIRCUITS_DATA = [
@@ -23,6 +23,17 @@ const CIRCUITS_DATA = [
     description: "Explorez les racines de la spiritualité Vodoun, les rituels ancestraux et la force tranquille d'une culture millénaire.",
     image: "/images/vodun-days.png",
     details: ["Cérémonies traditionnelles", "Rencontre avec des dignitaires", "Ouidah la mystique", "Héritages royaux"]
+  },
+  {
+    title: "Route des Esclaves",
+    tagline: "Un pèlerinage mémoriel à Ouidah",
+    duration: "1 jour",
+    shortDuration: "1/2 jour",
+    price: "75€",
+    shortPrice: "40€",
+    description: "Parcourez l'histoire émouvante de Ouidah, depuis la place des enchères jusqu'à la mythique Porte du Non-Retour, face à l'océan atlantique.",
+    image: "/images/ouidah.png",
+    details: ["Place Chacha", "Arbre de l'Oubli", "Mémorial de Zoungbodji", "Porte du Non Retour"]
   }
 ];
 
@@ -46,7 +57,13 @@ const CircuitsView: React.FC = () => {
           <div key={index} className={`max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center ${index % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}>
             <div className={`relative overflow-hidden rounded-[40px] shadow-2xl ${index % 2 !== 0 ? 'lg:order-last' : ''}`}>
               <div className="absolute inset-0 bg-gradient-to-t from-stone-900/40 to-transparent z-10"></div>
-              <img src={circuit.image} alt={circuit.title} className="w-full h-[600px] object-cover hover:scale-105 transition-transform duration-1000" />
+              <img
+                src={circuit.image}
+                alt={circuit.title}
+                loading="lazy"
+                decoding="async"
+                className="w-full h-[600px] object-cover hover:scale-105 transition-transform duration-1000"
+              />
               {circuit.title.includes("Vodoun") && (
                 <div className="absolute top-10 left-10 z-20 bg-red-600 text-white px-6 py-2 rounded-full text-[10px] font-bold tracking-widest uppercase">
                   9-10 Janvier

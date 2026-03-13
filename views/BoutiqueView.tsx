@@ -9,7 +9,7 @@ const PRODUCTS = [
     eur: "11€",
     usd: "12$",
     desc: "Stylé, confortable, doux et respirant, avec le logo emblématique Béninéo.",
-    image: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?q=80&w=1974&auto=format&fit=crop"
+    image: "/images/tshirt_classique.png"
   },
   {
     name: "Tee-shirt Personnalisable",
@@ -17,7 +17,7 @@ const PRODUCTS = [
     eur: "15€",
     usd: "18$",
     desc: "Créez votre propre style. Personnalisation totale (texte, visuel, couleurs).",
-    image: "https://images.unsplash.com/photo-1583743814966-8936f5b721fa?q=80&w=1974&auto=format&fit=crop"
+    image: "/images/tshirt_perso.png"
   },
   {
     name: "Casquette Béninéo",
@@ -25,7 +25,7 @@ const PRODUCTS = [
     eur: "8€",
     usd: "9$",
     desc: "Tendance, légère et ajustable. L'accessoire indispensable de l'explorateur.",
-    image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=2070&auto=format&fit=crop"
+    image: "/images/cap_benineo.png"
   }
 ];
 
@@ -46,7 +46,13 @@ const BoutiqueView: React.FC = () => {
         {PRODUCTS.map((product, i) => (
           <div key={i} className="group">
             <div className="aspect-[3/4] overflow-hidden rounded-[32px] mb-8 relative bg-stone-100 shadow-sm">
-              <img src={product.image} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+              <img
+                src={product.image.startsWith('http') ? `${product.image}&w=600` : product.image}
+                alt={product.name}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                loading="lazy"
+                decoding="async"
+              />
               <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
                 <button
                   onClick={() => window.location.href = `https://wa.me/2290169410332?text=Bonjour, je souhaite commander l'article : ${product.name}`}
@@ -57,8 +63,8 @@ const BoutiqueView: React.FC = () => {
               </div>
             </div>
             <div className="space-y-3 px-2">
-              <h3 className="text-2xl font-serif text-stone-900">{product.name}</h3>
-              <p className="text-stone-500 text-sm font-light italic leading-relaxed">{product.desc}</p>
+              <h3 className="text-2xl font-montserrat font-bold text-brand-dark">{product.name}</h3>
+              <p className="text-stone-500 text-sm font-light italic leading-relaxed font-sans">{product.desc}</p>
               <div className="pt-4 flex items-center justify-between">
                 <div className="flex flex-col">
                   <span className="text-accent font-bold text-2xl tracking-tight">{product.price}</span>
@@ -73,9 +79,9 @@ const BoutiqueView: React.FC = () => {
         ))}
 
         {/* Upcoming Products placeholder */}
-        <div className="aspect-[3/4] border-2 border-dashed border-stone-200 rounded-[32px] flex flex-col items-center justify-center p-10 text-center text-stone-300">
-          <h4 className="font-serif text-2xl mb-4">Prochainement</h4>
-          <p className="text-sm italic">Mugs, sculptures & créations locales</p>
+        <div className="aspect-[3/4] border-2 border-dashed border-brand-neutral rounded-[32px] flex flex-col items-center justify-center p-10 text-center text-stone-300">
+          <h4 className="font-montserrat font-bold text-2xl mb-4 text-brand-neutral">Prochainement</h4>
+          <p className="text-sm italic font-sans">Mugs, sculptures & créations locales</p>
         </div>
       </section>
     </div>
