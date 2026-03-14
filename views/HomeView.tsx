@@ -28,28 +28,28 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
   }, []);
 
   const BUTTON_LABELS = [
-    { 
-      text: "Découvrir nos services", 
+    {
+      text: "Découvrir nos services",
       view: 'home',
       subtext: "Le monde commence au Bénin.\nUne expérience unique & authentique."
     },
-    { 
-      text: "Nos coffrets cadeaux", 
+    {
+      text: "Nos coffrets cadeaux",
       view: 'ebunbox',
       subtext: "Offrez le meilleur du Bénin\navec nos Ebunbox exclusifs."
     },
-    { 
-      text: "Notre conciergerie", 
+    {
+      text: "Notre conciergerie",
       view: 'conciergerie',
       subtext: "L'excellence & le confort\npour un séjour inoubliable."
     },
-    { 
-      text: "Goodies & Souvenirs", 
+    {
+      text: "Goodies & Souvenirs",
       view: 'boutique',
       subtext: "Gardez des souvenirs mémorables\nde votre voyage."
     },
-    { 
-      text: "L'aventure Béninéo", 
+    {
+      text: "L'aventure Béninéo",
       view: 'circuits',
       subtext: "Explorez des circuits uniques\nau cœur de l'âme béninoise."
     }
@@ -83,9 +83,9 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
               initial={{ opacity: 0, scale: 1 }}
               animate={{ opacity: 0.6, scale: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ 
+              transition={{
                 opacity: { duration: 2, ease: "easeInOut" },
-                scale: { duration: 9, ease: "linear" } 
+                scale: { duration: 9, ease: "linear" }
               }}
               className={`absolute inset-0 w-full h-full object-cover bg-stone-900 ${currentImageIndex === 2 ? 'object-top' : 'object-center'}`}
               alt="Paysage Bénin"
@@ -145,7 +145,7 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
               onClick={() => onNavigate(BUTTON_LABELS[currentLabelIndex].view as ViewType)}
               className="group relative px-12 py-5 bg-accent text-white rounded-full font-bold uppercase tracking-[0.2em] text-xs md:text-sm overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_10px_30px_rgba(242,145,0,0.3)] min-w-[320px]"
             >
-               <AnimatePresence mode="wait">
+              <AnimatePresence mode="wait">
                 <motion.span
                   key={currentLabelIndex}
                   initial={{ opacity: 0, y: 20 }}
