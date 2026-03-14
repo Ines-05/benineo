@@ -78,20 +78,21 @@ const Layout: React.FC<LayoutProps> = ({ children, currentView, onNavigate }) =>
       />
 
       {/* Header */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isTransparent ? 'bg-transparent py-10' : 'bg-white/80 dark:bg-stone-950/80 backdrop-blur-lg py-7'}`}>
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-          <button onClick={() => onNavigate('home')} className="flex items-center group text-left relative">
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${isTransparent ? 'bg-transparent py-4 md:py-6' : 'bg-white/60 dark:bg-stone-950/60 backdrop-blur-xl py-2 md:py-3 shadow-sm border-b border-stone-200/20 dark:border-white/10'}`}>
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-20 md:h-24">
+          <button 
+            onClick={() => onNavigate('home')} 
+            className="flex items-center group relative z-10 -ml-2"
+          >
             <img
               src="/images/LoDi-logo.png.svg"
               alt="Béninéo Logo"
-              className={`absolute top-1/2 -translate-y-1/2 left-[-20px] md:left-[-30px] h-[180px] md:h-[260px] w-auto object-contain transition-transform duration-500 scale-125 group-hover:scale-[1.3] pointer-events-none`}
+              className="h-28 md:h-36 w-auto object-contain transition-all duration-500 group-hover:scale-110 drop-shadow-xl scale-110 origin-left"
             />
-            {/* Espace vide pour garder la place du logo sur la grille flex */}
-            <div className="w-[120px] md:w-[160px] h-[30px]"></div>
           </button>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
               <button
                 key={link.view}
@@ -115,7 +116,7 @@ const Layout: React.FC<LayoutProps> = ({ children, currentView, onNavigate }) =>
 
             <a
               href="https://wa.me/2290169410332"
-              className="bg-amber-700 text-white px-6 py-3 rounded-full text-xs font-bold hover:bg-amber-800 transition-colors tracking-widest"
+              className="bg-amber-700 text-white px-5 py-2 md:py-2.5 rounded-full text-[10px] md:text-xs font-bold hover:bg-amber-800 transition-colors tracking-widest"
             >
               RÉSERVER
             </a>
@@ -164,11 +165,11 @@ const Layout: React.FC<LayoutProps> = ({ children, currentView, onNavigate }) =>
       <footer className="bg-stone-950 text-stone-300 py-20 px-6 border-t border-stone-800">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center mb-2 group -ml-8">
+            <div className="flex items-center mb-6 group -ml-4 md:-ml-8">
               <img
                 src="/images/LoDi-logo.png.svg"
                 alt="Béninéo Logo"
-                className="h-[250px] md:h-[350px] w-auto object-contain opacity-90 transition-all duration-700 scale-125 group-hover:scale-[1.3] group-hover:opacity-100"
+                className="h-32 md:h-48 w-auto object-contain opacity-90 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100"
               />
             </div>
             <p className="max-w-md text-stone-400 leading-relaxed mb-8 italic text-sm">

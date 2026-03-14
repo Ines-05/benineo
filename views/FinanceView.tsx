@@ -43,7 +43,7 @@ const FinanceView: React.FC = () => {
                         transition={{ duration: 0.8 }}
                     >
                         <span className="text-accent font-bold uppercase tracking-[0.4em] text-xs mb-6 block">Transactions sans frontières</span>
-                        <h1 className="text-5xl md:text-8xl font-montserrat font-bold mb-8 text-brand-dark dark:text-white tracking-tighter leading-tight">
+                        <h1 className="text-[clamp(3rem,10vw,8rem)] font-montserrat font-bold mb-8 text-brand-dark dark:text-white tracking-tighter leading-tight">
                             Services <span className="text-accent italic">Financiers</span>
                         </h1>
                         <p className="text-stone-600 dark:text-stone-400 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed font-sans">

@@ -7,8 +7,8 @@ import { CIRCUITS, CONCIERGERIE_SERVICES } from '../constants';
 const HERO_IMAGES = [
   "/images/hero_ouidah.jpg",
   "/images/hero_stade.jpg",
-  "/images/hero_amazone.jpg",
-  "/images/hero_culture.png"
+  "/images/hero_amazone_fix.jpg", // Amazon Statue Fixed
+  "https://images.unsplash.com/photo-1502602898657-3e91724ca65a?q=80&w=2560&auto=format&fit=crop"  // Palm Beach Nature HD
 ];
 
 interface HomeViewProps {
@@ -81,13 +81,13 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
               key={currentImageIndex}
               src={HERO_IMAGES[currentImageIndex]}
               initial={{ opacity: 0, scale: 1 }}
-              animate={{ opacity: 0.6, scale: 1.1 }}
+              animate={{ opacity: 0.6, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ 
                 opacity: { duration: 2, ease: "easeInOut" },
                 scale: { duration: 9, ease: "linear" } 
               }}
-              className="absolute inset-0 w-full h-full object-cover"
+              className={`absolute inset-0 w-full h-full object-cover bg-stone-900 ${currentImageIndex === 2 ? 'object-top' : 'object-center'}`}
               alt="Paysage Bénin"
               decoding="async"
               fetchPriority={currentImageIndex === 0 ? "high" : "low"}
@@ -96,7 +96,7 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60"></div>
         </div>
 
-        <div className="relative z-10 text-center px-6 max-w-5xl mx-auto flex flex-col items-center">
+        <div className="relative z-10 text-center px-6 max-w-5xl mx-auto flex flex-col items-center pt-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -117,11 +117,11 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.7, duration: 1.2, ease: "easeOut" }}
-            className="text-7xl md:text-[10rem] font-montserrat font-bold text-white mb-10 leading-[0.85] tracking-tighter"
+            className="text-[clamp(3.5rem,15vw,10rem)] font-montserrat font-bold text-white mb-6 md:mb-10 leading-[0.85] tracking-tighter"
           >
             Béninéo
           </motion.h1>
-          <div className="h-24 md:h-32 flex items-center justify-center">
+          <div className="h-28 md:h-32 flex items-center justify-center mb-8 md:mb-16">
             <AnimatePresence mode="wait">
               <motion.p
                 key={currentLabelIndex}
@@ -129,7 +129,7 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.6 }}
-                className="text-lg md:text-2xl text-white/90 max-w-2xl mx-auto font-light leading-relaxed font-sans whitespace-pre-line"
+                className="text-base md:text-[clamp(1.1rem,2.5vw,1.5rem)] text-white/90 max-w-2xl mx-auto font-light leading-relaxed font-sans whitespace-pre-line"
               >
                 {BUTTON_LABELS[currentLabelIndex].subtext}
               </motion.p>
